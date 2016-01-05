@@ -12,13 +12,8 @@
 	function _setHtml(dom, h) {
 		dom.innerHTML = h;
 	}
-	function _setText(dom, t) {
-		dom.textContent = t;
-	}
 	function _appendCss() {
-		var xCss = document.createElement('style');
-		var styleContent = document.createTextNode(
-			'.github-box *{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;}'+
+		var cssStr = '.github-box *{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;}'+
 			'.github-box{font-family:helvetica,arial,sans-serif;font-size:13px;line-height:18px;background:#fafafa;border:1px solid #ddd;color:#666;border-radius:3px}'+
 			'.github-box a{color:#4183c4;border:0;text-decoration:none}'+
 			'.github-box .github-box-title{position:relative;border-bottom:1px solid #ddd;border-radius:3px 3px 0 0;background:#fcfcfc;background:-moz-linear-gradient(#fcfcfc,#ebebeb);background:-webkit-linear-gradient(#fcfcfc,#ebebeb);}'+
@@ -42,22 +37,19 @@
 			'.github-box .github-box-title .github-stats a{display:block;clear:right;float:right;}'+
 			'.github-box .github-box-download{height:auto;min-height:46px;}'+
 			'.github-box .github-box-download .download{top:32px;}'+
-			'}');
-		xCss.appendChild(styleContent);
-		document.getElementsByTagName('head')[0].appendChild(xCss);
+			'}', x = document.createElement('div');
+		x.innerHTML = 'x<style>'+cssStr+'</style>';
+		document.getElementsByTagName('head')[0].appendChild(x.lastChild);
 	}
 	function _renderGitHubWidget(repoEle, repo) {
-		repo = JSON.parse(repo);
-		var pushed_at = 'unknown';
-		if (repo.pushed_at) {
-			var date = new Date(repo.pushed_at);
-			pushed_at = (date.getMonth() + 1) + '-' + date.getDate() + '-' + date.getFullYear();
-		}
-
-		_setText(_querySelector(repoEle, '.watchers'), repo.watchers);
-		_setText(_querySelector(repoEle, '.forks'), repo.forks);
-		_setText(_querySelector(repoEle, '.description span'), repo.description);
-		_setHtml(_querySelector(repoEle, '.updated'), 'Latest commit to the <strong>' + repo.default_branch + '</strong> branch on ' + pushed_at);
+		if (window.JSON && JSON.parse)
+			repo = JSON.parse(repo);
+		else
+			repo = eval('(' + repo + ')');
+		_setHtml(_querySelector(repoEle, '.watchers'), repo.watchers);
+		_setHtml(_querySelector(repoEle, '.forks'), repo.forks);
+		_setHtml(_querySelector(repoEle, '.description span'), repo.description);
+		_setHtml(_querySelector(repoEle, '.updated'), 'Latest commit to the <strong>' + repo.default_branch+ '</strong> branch on ' + repo.pushed_at.substring(0, 10));
 
 		if(repo.homepage != null) _setHtml(_querySelector(repoEle, '.link'), '<a href="'+ repo.homepage +'">'+ repo.homepage +'</a>');
 		repoEle.setAttribute('github-widget-rendered', '1');
@@ -78,7 +70,7 @@
 			}
 		};
 		xmlhttp.open('GET', 'https://api.github.com/repos/' + repo, true);
-        xmlhttp.send();
+		xmlhttp.send();
 	}
 	function init() {
 		var github_eles = document.querySelectorAll('.github-widget'), repoEle, repo, vendorName, repoName, vendorUrl, repoUrl, widget;
