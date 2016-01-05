@@ -1,0 +1,34 @@
+{
+  "name": "github-repo-widget.js",
+  "officialName": "GitHub-Repo-Widget.js",
+  "version": "1.0.1",
+  "summary": "A good looking github repository widget to add to your website. Not depends on jQuery or Other.",
+  "description": "A good looking github repository widget to add to your website. Not depends on jQuery or Other.",
+  "author": {
+    "name": "atool",
+    "url": "http://www.atool.org"
+  },
+  "homepage": "http://www.atool.org/",
+  "license": "MIT",
+  "keywords": [
+    "github",
+    "repository",
+    "widget",
+    "website"
+  ],
+  "main": "GithubRepoWidget.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hustcc/GitHub-Repo-Widget.js"
+  },
+  "bugs": {
+    "url": "https://github.com/hustcc/GitHub-Repo-Widget.js/issues"
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+    "test": "node tests/index"
+  },
+  "dependencies": {
+  }
+}

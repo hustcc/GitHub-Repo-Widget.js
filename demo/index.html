@@ -12,16 +12,14 @@
 <h1>Example Widgets</h1>
 
 <div style="width: auto; max-width: 600px;">
-
-	<div class="github-widget" data-repo="hustcc/placeholder.js"></div>
-	<br>
-	<div class="github-widget" data-repo="hustcc/wrapcache"></div>
-	<br>
 	<div class="github-widget" data-repo="hustcc/GitHub-Repo-Widget.js"></div>
 	<br>
-	<div class="github-widget" data-repo="JoelSutherland/GitHub-jQuery-Repo-Widget"></div>
+	<div class="github-widget" data-repo="hustcc/placeholder.js"></div>
+	<br>
+	<script type="text/javascript" src="../GithubRepoWidget.js"></script>
+	<div class="github-widget" data-repo="hustcc/wrapcache"></div>
 </div>
 </div><!-- #container -->
-<script type="text/javascript" src="../GithubRepoWidget.min.js"></script>
+<script type="text/javascript">setTimeout(GithubRepoWidget.init, 5000);</script>
 </body>
 </html>

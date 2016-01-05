@@ -42,7 +42,6 @@
 	}
 	function _renderGitHubWidget(repoEle, repo) {
 		repo = JSON.parse(repo);
-		console.log(repo.watchers);
 		var pushed_at = 'unknown';
 		if (repo.pushed_at) {
 			var date = new Date(repo.pushed_at);
@@ -55,6 +54,7 @@
 		repoEle.querySelector('.updated').innerHTML = 'Latest commit to the <strong>' + repo.default_branch + '</strong> branch on ' + pushed_at;
 
 		if(repo.homepage != null) repoEle.querySelector('.link').innerHTML = '<a href="'+ repo.homepage +'">'+ repo.homepage +'</a>';
+		repoEle.setAttribute('github-widget-rendered', '1');
 	}
 	function _ajaxReq(repoEle, repo) {
 		var xmlhttp;
@@ -114,4 +114,7 @@
 	}
 	_appendCss();
 	init();
+	window.GithubRepoWidget = {
+		init: init
+	};
 })();
