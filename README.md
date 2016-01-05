@@ -6,9 +6,11 @@
 
 Drop this script on your page and it will build you a beautiful widget that displays the status of your GitHub Repositories.
 
+
 ## What does it look like?
 
 ![Widget Image](demo/screenshot.png)
+
 
 ## How do I use it?
 
@@ -24,7 +26,9 @@ Then include the javascript file somewhere ~~after you've include jQuery~~:
 <script type="text/javascript" src="GithubRepoWidget.min.js"></script>
 ```
 
-That's it! All of the styling is included and image assets are pulled from GitHub.
+That's it! All of the styling is included and image assets are pulled from GitHub. 
+
+This automatically handles the CSS styling as well by adding a script tag into the head of the document. This makes it really easy to add to page since there are no other dependencies. Also, the container is fluid so it fills whatever width is available.
 
 **`All the usage is same with GitHub-jQuery-Repo-Widget`**.
 
@@ -38,6 +42,7 @@ document.getElementById('github-repos').innerHTML = '<div class="github-widget" 
 GithubRepoWidget.init();
 ```
 
+
 ## Something need to write
 
 The repo is base on:
@@ -49,7 +54,7 @@ What I hava done:
 
 1. Rewrite `GitHub-jQuery-Repo-Widget`, and remove jQuery, then get `GitHub-Repo-Widget.js`. `Do not depends on jQuery or Other`.
 2. Add a `API` to init repo Programmatic.
-2. Compress the image, then compress the file size. from `7.62kb` to `5.46kb`.
+2. Compress the image, then compress the file size. from `7.62kb` to `5.41kb`.
 3. Update demo/index.html and screenshot.png.
 
 Welcome to push request and issue.

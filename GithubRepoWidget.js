@@ -3,11 +3,17 @@
 	License:  MIT
 */
 (function() {
-	var box_title_png = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAXBAMAAAD0LQLXAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAASUExURQAAAL29vc3NzcLCwsjIyNbW1pvTNOEAAAABdFJOUwBA5thmAAAATElEQVQI12MIFoQAEQZFYwcGEGBkUDRUQLCcsYjRXhbqKkEGZQYGqJgSnKXCwGgsAGYpqyobG4WGhioyhBhDgClI3EQAqpaZwQBEAQARmA4G2o55nQAAAABJRU5ErkJggg==';
-	var stats_png = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAqBAMAAABB12bjAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAYUExURf///5mZmdbW1u/v7/r6+rGxscXFxaSkpHLccIMAAABsSURBVBjTY2CgBmBODTOAsFgSi9TFHMBMc1Fmk8BiEItJUMhQWFFQAZXJoC7q7FJYhNBmgG7YQAIWMYTvEExXIbh8oAJWQQe4IGsIlKmowAZVwaKowgxlMgkKmwtCjRAUYBSEqnVkYBAm39EALMwNXwql3eYAAAAASUVORK5CYII=';
-
 	function _getAttribute(node, name, defaultValue) {
 		return node.getAttribute(name) || defaultValue;
+	}
+	function _querySelector(dom, sel) {
+		return dom.querySelector(sel);
+	}
+	function _setHtml(dom, h) {
+		dom.innerHTML = h;
+	}
+	function _setText(dom, t) {
+		dom.textContent = t;
 	}
 	function _appendCss() {
 		var xCss = document.createElement('style');
@@ -16,10 +22,10 @@
 			'.github-box{font-family:helvetica,arial,sans-serif;font-size:13px;line-height:18px;background:#fafafa;border:1px solid #ddd;color:#666;border-radius:3px}'+
 			'.github-box a{color:#4183c4;border:0;text-decoration:none}'+
 			'.github-box .github-box-title{position:relative;border-bottom:1px solid #ddd;border-radius:3px 3px 0 0;background:#fcfcfc;background:-moz-linear-gradient(#fcfcfc,#ebebeb);background:-webkit-linear-gradient(#fcfcfc,#ebebeb);}'+
-			'.github-box .github-box-title h3{word-wrap:break-word;font-family:helvetica,arial,sans-serif;font-weight:normal;font-size:16px;color:gray;margin:0;padding:10px 10px 10px 30px;background:url('+box_title_png+') 7px center no-repeat; width: auto;}'+
+			'.github-box .github-box-title h3{word-wrap:break-word;font-family:helvetica,arial,sans-serif;font-weight:normal;font-size:16px;color:gray;margin:0;padding:10px 10px 10px 30px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAXBAMAAAD0LQLXAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAASUExURQAAAL29vc3NzcLCwsjIyNbW1pvTNOEAAAABdFJOUwBA5thmAAAATElEQVQI12MIFoQAEQZFYwcGEGBkUDRUQLCcsYjRXhbqKkEGZQYGqJgSnKXCwGgsAGYpqyobG4WGhioyhBhDgClI3EQAqpaZwQBEAQARmA4G2o55nQAAAABJRU5ErkJggg==) 7px center no-repeat; width: auto;}'+
 			'.github-box .github-box-title h3 .repo{font-weight:bold}'+
 			'.github-box .github-box-title .github-stats{float:right;position:absolute;top:8px;right:10px;font-size:11px;font-weight:bold;line-height:21px;height:auto;min-height:21px}'+
-			'.github-box .github-box-title .github-stats a{display:inline-block;height:21px;color:#666;border:1px solid #ddd;border-radius:3px;padding:0 5px 0 18px;background: white url('+stats_png+') no-repeat}'+
+			'.github-box .github-box-title .github-stats a{display:inline-block;height:21px;color:#666;border:1px solid #ddd;border-radius:3px;padding:0 5px 0 18px;background: white url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAqBAMAAABB12bjAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAYUExURf///5mZmdbW1u/v7/r6+rGxscXFxaSkpHLccIMAAABsSURBVBjTY2CgBmBODTOAsFgSi9TFHMBMc1Fmk8BiEItJUMhQWFFQAZXJoC7q7FJYhNBmgG7YQAIWMYTvEExXIbh8oAJWQQe4IGsIlKmowAZVwaKowgxlMgkKmwtCjRAUYBSEqnVkYBAm39EALMwNXwql3eYAAAAASUVORK5CYII=) no-repeat}'+
 			'.github-box .github-box-title .github-stats .watchers{border-right:1px solid #ddd}'+
 			'.github-box .github-box-title .github-stats .forks{background-position:-4px -21px;padding-left:15px}'+
 			'.github-box .github-box-content{padding:10px;font-weight:300}'+
@@ -48,12 +54,12 @@
 			pushed_at = (date.getMonth() + 1) + '-' + date.getDate() + '-' + date.getFullYear();
 		}
 
-		repoEle.querySelector('.watchers').textContent = repo.watchers;
-		repoEle.querySelector('.forks').textContent = (repo.forks);
-		repoEle.querySelector('.description span').textContent = repo.description;
-		repoEle.querySelector('.updated').innerHTML = 'Latest commit to the <strong>' + repo.default_branch + '</strong> branch on ' + pushed_at;
+		_setText(_querySelector(repoEle, '.watchers'), repo.watchers);
+		_setText(_querySelector(repoEle, '.forks'), repo.forks);
+		_setText(_querySelector(repoEle, '.description span'), repo.description);
+		_setHtml(_querySelector(repoEle, '.updated'), 'Latest commit to the <strong>' + repo.default_branch + '</strong> branch on ' + pushed_at);
 
-		if(repo.homepage != null) repoEle.querySelector('.link').innerHTML = '<a href="'+ repo.homepage +'">'+ repo.homepage +'</a>';
+		if(repo.homepage != null) _setHtml(_querySelector(repoEle, '.link'), '<a href="'+ repo.homepage +'">'+ repo.homepage +'</a>');
 		repoEle.setAttribute('github-widget-rendered', '1');
 	}
 	function _ajaxReq(repoEle, repo) {
@@ -78,7 +84,6 @@
 		var github_eles = document.querySelectorAll('.github-widget'), repoEle, repo, vendorName, repoName, vendorUrl, repoUrl, widget;
 		for (var i = 0; i < github_eles.length; i++) {
 			repoEle = github_eles[i];
-			//没有被处理过，处理
 			if (! _getAttribute(repoEle, 'github-widget-rendered', '')) {
 				repo = _getAttribute(repoEle, 'data-repo', ''),
 				vendorName = repo.split('/')[0],
@@ -104,10 +109,10 @@
 					'</div>'+
 					'<div class="github-box-download">'+
 					'<div class="updated"></div>'+
-					'<a class="download" href="' + repoUrl + '/zipball/master" title="Get an archive of this repository">Download as zip</a>'+
+					'<a class="download" href="' + repoUrl + '/zipball/master" title="Get repository">Download as zip</a>'+
 					'</div>'+
 					'</div>';
-				repoEle.innerHTML = widget;
+				_setHtml(repoEle, widget);
 				_ajaxReq(repoEle, repo);
 			}
 		}
