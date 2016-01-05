@@ -1,7 +1,7 @@
 {
   "name": "github-repo-widget.js",
   "officialName": "GitHub-Repo-Widget.js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "summary": "A good looking github repository widget to add to your website. Not depends on jQuery or Other.",
   "description": "A good looking github repository widget to add to your website. Not depends on jQuery or Other.",
   "author": {
