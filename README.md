@@ -1,8 +1,8 @@
 # GitHub Repo Widget
 
-`Do not depends on jQuery or Other framework.`
-
 [![Build Status](https://travis-ci.org/hustcc/GitHub-Repo-Widget.js.svg?branch=master)](https://travis-ci.org/hustcc/GitHub-Repo-Widget.js) [![npm](https://img.shields.io/npm/v/github-repo-widget.js.svg?style=flat-square)](https://www.npmjs.com/package/github-repo-widget.js) [![npm](https://img.shields.io/npm/dt/github-repo-widget.js.svg?style=flat-square)](https://www.npmjs.com/package/github-repo-widget.js) [![npm](https://img.shields.io/npm/l/github-repo-widget.js.svg?style=flat-square)](https://www.npmjs.com/package/github-repo-widget.js)
+
+> A good looking github repository widget to add to your website. `Do not depends on jQuery or Other framework`.
 
 Drop this script on your page and it will build you a beautiful widget that displays the status of your GitHub Repositories.
 
@@ -10,6 +10,15 @@ Drop this script on your page and it will build you a beautiful widget that disp
 ## What does it look like?
 
 ![Widget Image](demo/screenshot.png)
+
+
+## Browser Support
+
+We do care about it.
+
+![IE](https://cloud.githubusercontent.com/assets/398893/3528325/20373e76-078e-11e4-8e3a-1cb86cf506f0.png) | ![Chrome](https://cloud.githubusercontent.com/assets/398893/3528328/23bc7bc4-078e-11e4-8752-ba2809bf5cce.png) | ![Firefox](https://cloud.githubusercontent.com/assets/398893/3528329/26283ab0-078e-11e4-84d4-db2cf1009953.png) | ![Opera](https://cloud.githubusercontent.com/assets/398893/3528330/27ec9fa8-078e-11e4-95cb-709fd11dac16.png) | ![Safari](https://cloud.githubusercontent.com/assets/398893/3528331/29df8618-078e-11e4-8e3e-ed8ac738693f.png)
+--- | --- | --- | --- | --- |
+IE 8+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
 
 ## How do I use it?
@@ -43,7 +52,7 @@ GithubRepoWidget.init();
 ```
 
 
-## Something need to write
+## Issues
 
 The repo is base on:
 
