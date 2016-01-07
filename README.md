@@ -63,7 +63,7 @@ What I hava done:
 
 1. Rewrite `GitHub-jQuery-Repo-Widget`, and remove jQuery, then get `GitHub-Repo-Widget.js`. `Do not depends on jQuery or Other`.
 2. Add a `API` to init repo Programmatic.
-2. Compress the image, then compress the file size. from `7.62kb` to `6.02kb`.
+2. Compress the image, then compress the file size. from `7.62kb` to `5.28kb`.
 3. Update demo/index.html and screenshot.png.
 
 Welcome to push request and issue.
